@@ -19,22 +19,22 @@ production = process.env.NODE_ENV is 'production'
 
 config =
   scripts:
-    source: './src/js/main.js'
+    source: './app/main.js'
     extensions: ['.jsx']
-    destination: './public/js/'
+    destination: './dist/js/'
     filename: 'bundle.js'
   templates:
-    source: './src/jade/*.jade'
-    watch: './src/jade/*.jade'
-    destination: './public/'
+    source: './app/index.jade'
+    watch: './app/**/*.jade'
+    destination: './dist/'
   styles:
-    source: './src/stylus/style.styl'
-    watch: './src/stylus/*.styl'
-    destination: './public/css/'
+    source: './app/style.styl'
+    watch: './app/**/*.styl'
+    destination: './dist/css/'
   assets:
-    source: './src/assets/**/*.*'
-    watch: './src/assets/**/*.*'
-    destination: './public/'
+    source: './app/assets/**/*.*'
+    watch: './app/assets/**/*.*'
+    destination: './dist/'
 
 handleError = (err) ->
   gutil.log err
@@ -89,7 +89,7 @@ gulp.task 'assets', ->
 
 gulp.task 'server', ->
   require('http')
-    .createServer ecstatic root: path.join(__dirname, 'public')
+    .createServer ecstatic root: path.join(__dirname, 'dist')
     .listen 9001
 
 gulp.task 'watch', ->
